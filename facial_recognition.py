@@ -10,6 +10,7 @@ import os
 import face_recognition
 import cv2
 import numpy as np
+from spotify_playback import spotify_playback as sp
 
 
 #   1. Process each video frame at 1/4 resolution (though still display it at full resolution)
