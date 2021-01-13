@@ -1,6 +1,6 @@
 .DS_Store
 .cache
-encodings.txt
+encodings.json
 keys.txt
 known_people/
 __pycache__/
