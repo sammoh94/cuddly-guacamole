@@ -11,13 +11,19 @@ from spotipy.oauth2 import SpotifyOAuth
 
 def spotify_playback(songID, cid, secret, redURI = 'https://www.google.com', scope = 'streaming, user-read-playback-state, user-modify-playback-state'):
     '''
-
+    Summary
+    -------
+    Creates an instance of a Spotify object using the credentials taken in.
+    Finds the id of the device from which you want to playback music (default
+    is the first device in your active devices). Finally, starts playback of
+    the song(s) represented by songID in Spotify
+    
     Parameters
     ----------
     songID : list of strings, required
         This value is taken in from a dictionary that maps faces to Spotify
         track URIs.
-    cid : string, required ()
+    cid : string, required
         Represents the Spotify app's client_id. You will get this by creating an
         authorized Spotify Developer App
     secret : string, required
@@ -41,19 +47,11 @@ def spotify_playback(songID, cid, secret, redURI = 'https://www.google.com', sco
 
     '''
     
-    #create an instance of a Spotify object using our credentials
-    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=cid, client_secret=secret, redirect_uri=redURI, scope=scope))
+    sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id = cid, client_secret = secret, redirect_uri = redURI, scope = scope))
     
-    #find the id of the device from which you want to playback music
-    #default is the first device in your active devices
+    # uncomment to see all active devices
     #print(sp.devices())
-    did = sp.devices()['devices'][0]['id']
+    devID = sp.devices()['devices'][0]['id']
     
-    #once you know the device_id of the device you want to use you can set it
-    #manually to avoid accidentally changing your active playback device
-    #note: device_id changes when you close and reopen Spotify web player
-    # did = ''
-    
-    #start playback of song that corresponds to the input song id
-    sp.start_playback(device_id = did, uris=songID)
+    sp.start_playback(device_id = devID, uris = songID)
     
