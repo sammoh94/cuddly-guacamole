@@ -9,7 +9,7 @@ Created on Sun Jan 3 20:41:09 2021
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-def spotify_playback(songID, cid, secret, redURI = 'https://www.google.com', scope = 'streaming, user-read-playback-state, user-modify-playback-state'):
+def spotify_playback(songID, cid, secret, redURI = 'https://www.google.com', scopes = 'streaming, user-read-playback-state, user-modify-playback-state'):
     '''
     Summary
     -------
@@ -35,7 +35,7 @@ def spotify_playback(songID, cid, secret, redURI = 'https://www.google.com', sco
         however, this will vary based on the credentials of your own app. You will
         have to make sure that whatever URI you use here is also added to your
         app in the Spotify Developer Dashboard.
-    scope : string, optional
+    scopes : string, optional
         The scopes represent what functionalities we can access.
         The scopes 'streaming, user-read-playback-state, user-modify-playback-state'
         allow us to playback music and acquire the device id from which we want
@@ -47,11 +47,12 @@ def spotify_playback(songID, cid, secret, redURI = 'https://www.google.com', sco
 
     '''
     
-    sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id = cid, client_secret = secret, redirect_uri = redURI, scope = scope))
+    sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id = cid, client_secret = secret, redirect_uri = redURI, scope = scopes))
     
     # uncomment to see all active devices
-    #print(sp.devices())
+    # print(sp.devices())
     devID = sp.devices()['devices'][0]['id']
     
     sp.start_playback(device_id = devID, uris = songID)
+
     
