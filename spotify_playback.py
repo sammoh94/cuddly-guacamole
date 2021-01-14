@@ -51,6 +51,7 @@ def spotify_playback(songID, cid, secret, redURI = 'https://www.google.com', sco
     
     # uncomment to see all active devices
     # print(sp.devices())
+    # may have to change value based on desired output device
     devID = sp.devices()['devices'][0]['id']
     
     sp.start_playback(device_id = devID, uris = songID)
