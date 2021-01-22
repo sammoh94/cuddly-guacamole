@@ -3,11 +3,11 @@ Connects to a camera and runs facial recognition software to play specific songs
 
 # Getting Started
 ## Pre-Requisites
-1. face-recognition 1.3.0
+1. face-recognition: `1.3.0`
     - Python 3.3+ or Python 2.7
     - macOS or Linux (Windows not officially supported, but might work)
     - have [dlib](https://gist.github.com/ageitgey/629d75c1baac34dfa5ca2a1928a7aeaf) installed
-2. spotipy 2.16.1
+2. spotipy: `2.16.1`
 3. Have a [Spotify Premium account](https://www.spotify.com/ca-en/premium/)
 4. Sign up for a [Spotify developer account](https://developer.spotify.com)
 
@@ -20,9 +20,10 @@ Create a new app in your Spotify developer account and take note of your client 
 Make sure to also add a Redirect URI to your project by clicking the edit button on your app (the default used for this project is https://www.google.com, but any valid URL should work).
 
 # API Reference
+```
 [face-recognition download](https://pypi.org/project/face-recognition/)
-
 [face-recognition documentation](https://face-recognition.readthedocs.io/en/latest/face_recognition.html)
+```
 
 Run the following in your terminal/command prompt:
 
@@ -30,9 +31,10 @@ Run the following in your terminal/command prompt:
 or
 `python3 -m pip install face-recognition`
 
+```
 [spotipy download](https://pypi.org/project/spotipy/)
-
 [spotipy documentation](https://spotipy.readthedocs.io/en/2.16.1/)
+```
 
 Run the following in your terminal/command prompt:
 
