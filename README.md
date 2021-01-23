@@ -20,10 +20,9 @@ Create a new app in your Spotify developer account and take note of your client 
 Make sure to also add a Redirect URI to your project by clicking the edit button on your app (the default used for this project is https://www.google.com, but any valid URL should work).
 
 # API Reference
-```
+
 [face-recognition download](https://pypi.org/project/face-recognition/)
 [face-recognition documentation](https://face-recognition.readthedocs.io/en/latest/face_recognition.html)
-```
 
 Run the following in your terminal/command prompt:
 
@@ -31,10 +30,10 @@ Run the following in your terminal/command prompt:
 or
 `python3 -m pip install face-recognition`
 
-```
+
 [spotipy download](https://pypi.org/project/spotipy/)
 [spotipy documentation](https://spotipy.readthedocs.io/en/2.16.1/)
-```
+
 
 Run the following in your terminal/command prompt:
 
@@ -62,10 +61,10 @@ Once you've added your images, you can rerun build_database.py to build your dat
 There's more I'll add later
 
 # Contributors
-```
+
 [Alec Echevarria](https://github.com/aleceche)
 [Samarth Mohan](https://github.com/sammoh94)
-```
+
 
 # License
 This project is licensed under the MIT License - see the LICENSE file for details
