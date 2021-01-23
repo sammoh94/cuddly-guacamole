@@ -21,48 +21,65 @@ Make sure to also add a Redirect URI to your project by clicking the edit button
 
 # API Reference
 
-[face-recognition download](https://pypi.org/project/face-recognition/)
+[face-recognition download](https://pypi.org/project/face-recognition/)\
 [face-recognition documentation](https://face-recognition.readthedocs.io/en/latest/face_recognition.html)
 
 Run the following in your terminal/command prompt:
 
-`pip install face-recognition`
-or
+`pip install face-recognition`/
+or/
 `python3 -m pip install face-recognition`
 
 
-[spotipy download](https://pypi.org/project/spotipy/)
+[spotipy download](https://pypi.org/project/spotipy/)\
 [spotipy documentation](https://spotipy.readthedocs.io/en/2.16.1/)
 
 
 Run the following in your terminal/command prompt:
 
-`pip install spotipy`
-or
+`pip install spotipy`/
+or/
 `python3 -m pip install spotipy`
 
 # How to Use
-navigate to the local repository
+1. Navigate to the local repository:
 
 `cd cuddly_guacamole/`
 
-and run build_database.py from the terminal
+2. Run *build_database.py* from the terminal:
 
 `python3 build_database.py`
 
-or from your favorite IDE to create required files and directories (see docstring for build_database.py for more information) and add them to your .gitignore file
+or from your favorite IDE to create required files and directories (see docstring for *build_database.py* for more information) and add them to your *.gitignore* file.
 
-**Note** - first run creates the 'known_people' directory in which you will store your images.
+**Note** - first run creates the *known_people* directory in which you will store your images.
 
-You will then have to manually add images of people you want to store in your database to this directory. Files should be named with the form 'firstName lastName.jpg' (e.g. Alec Echevarria.jpg).
+3. Manually add images of people you want to store in your database to this directory. Files must be named with the form 'firstName lastName.jpg' (e.g. Alec Echevarria.jpg).
 
-Once you've added your images, you can rerun build_database.py to build your database mapping names to faces and music.
+4. Re-run *build_database.py* to build your database, mapping names to faces and music selection:
 
-There's more I'll add later
+`python3 build_database.py`
+
+5. Input song and artist information. If the song is not found (spelled incorrectly or not on Spotify), the user will be prompted to try again.
+
+6. Run *facial_recognition.py from the terminal:
+
+`python3 facial_recognition.py`
+
+or from your favorite IDE. This will turn on your camera and begin playback from your active Spotify device if a face is recognized.
+
+**Note** - you can find your active device by uncommenting the line in *spotify_playback.py* that prints all devices.
+
+7. To update database after adding more images, run:
+
+`python3 build_database.py`
+
+which prompts the user to input new song and artist information. If any name is not valid (not found in the *known_people* directory), the user is notified and that name is skipped. If the new song is not found, the user will be prompted to enter information again.
+
 
 # Contributors
 
-[Alec Echevarria](https://github.com/aleceche)
+[Alec Echevarria](https://github.com/aleceche)\
 [Samarth Mohan](https://github.com/sammoh94)
 
 
