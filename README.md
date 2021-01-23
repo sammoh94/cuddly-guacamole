@@ -62,19 +62,13 @@ or from your favorite IDE to create required files and directories (see docstrin
 
 5. Input song and artist information. If the song is not found (spelled incorrectly or not on Spotify), the user will be prompted to try again.
 
-6. Run *facial_recognition.py from the terminal:
+6. Run *facial_recognition.py* from the terminal:
 
 `python3 facial_recognition.py`
 
-or from your favorite IDE. This will turn on your camera and begin playback from your active Spotify device if a face is recognized.
+or from your favorite IDE. This will first ask if you want to update favorite track information for anyone in your *known_people* directory. If yes, type *Y* and input the new information. Else, type *N*. Next, the script turns on your camera and begins playback from your active Spotify device if a face is recognized.
 
 **Note** - you can find your active device by uncommenting the line in *spotify_playback.py* that prints all devices.
-
-7. To update database after adding more images, run:
-
-`python3 build_database.py`
-
-which prompts the user to input new song and artist information. If any name is not valid (not found in the *known_people* directory), the user is notified and that name is skipped. If the new song is not found, the user will be prompted to enter information again.
 
 
 # Contributors
