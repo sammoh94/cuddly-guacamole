@@ -26,8 +26,8 @@ Make sure to also add a Redirect URI to your project by clicking the edit button
 
 Run the following in your terminal/command prompt:
 
-`pip install face-recognition`/
-or/
+`pip install face-recognition`\
+or\
 `python3 -m pip install face-recognition`
 
 
@@ -37,8 +37,8 @@ or/
 
 Run the following in your terminal/command prompt:
 
-`pip install spotipy`/
-or/
+`pip install spotipy`\
+or\
 `python3 -m pip install spotipy`
 
 # How to Use
