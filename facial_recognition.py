@@ -109,8 +109,7 @@ def runFacialRecognition(cid, secret, timeOut = 5, faceLocations = [], faceEncod
     if songIDs:
         ps(songIDs, cid, secret) 
 
-
-if __name__ == '__main__':
+def main():
     #acquire Spotify keys from hidden file
     with open('keys.txt', 'r') as keys:
         cid, secret = keys.read().split('\n')
@@ -121,6 +120,10 @@ if __name__ == '__main__':
         ut(names, cid, secret)
         
     runFacialRecognition(cid, secret)
+    
+
+if __name__ == '__main__':
+    main()
 
 
 
