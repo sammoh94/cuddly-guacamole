@@ -62,9 +62,10 @@ Once you've added your images, you can rerun build_database.py to build your dat
 There's more I'll add later
 
 # Contributors
+```
 [Alec Echevarria](https://github.com/aleceche)
-
 [Samarth Mohan](https://github.com/sammoh94)
+```
 
 # License
 This project is licensed under the MIT License - see the LICENSE file for details
