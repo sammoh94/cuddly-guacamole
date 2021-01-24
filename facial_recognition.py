@@ -18,26 +18,39 @@ def runFacialRecognition(cid, secret, timeOut = 5, faceLocations = [], faceEncod
     '''
     Summary
     -------
-    
+    Imports the mapping from your encodings file and runs openCV and the facial
+    recognition API to check if the faces found by the connected camera match
+    any in your known_people directory. Plays the corresponding music for each
+    recognized face.
 
     Parameters
     ----------
-    cid : TYPE
-        DESCRIPTION.
-    secret : TYPE
-        DESCRIPTION.
-    timeOut : TYPE, optional
-        DESCRIPTION. The default is 5.
-    faceLocations : TYPE, optional
-        DESCRIPTION. The default is [].
-    faceEncodings : TYPE, optional
-        DESCRIPTION. The default is [].
-    mappedNames : TYPE, optional
-        DESCRIPTION. The default is [].
-    songIDs : TYPE, optional
-        DESCRIPTION. The default is [].
-    processFrame : TYPE, optional
-        DESCRIPTION. The default is True.
+    cid : string, required
+        Represents the Spotify app's client_id. You will get this by creating an
+        authorized Spotify Developer App.
+    secret : string, required
+        Represents the Spotify app's secret id. You will get this by creating an
+        authorized Spotify Developer App (DO NOT SHARE WITH OTHERS).
+    timeOut : int, optional
+        Represents the number of seconds that the camera will remain on when running
+        the script. The default value is 5 seconds.
+    faceLocations : list
+        Creates a list that will be updated with face location coordinates as the
+        program runs. The list defaults to empty.
+    faceEncodings : list
+        Creates a list that will be updated with face encodings for all faces
+        found by the camera. The list defaults to empty.
+    mappedNames : list
+        Creates a list that will be updated with the names of any faces that
+        the camera recognizes and that match someone in oyur known_people directory.
+        The list defaults to empty.
+    songIDs : list
+        Creates a list that will be updated with the track URIs of all the
+        people that are added to the mappedNames list. The list defaults to empty.
+    processFrame : bool
+        a bool that determines whether or not a frame will be processed in a given
+        passthrough of the while loop. This allows the facial recognition API
+        to run more efficiently. The default is True.
 
     Returns
     -------
