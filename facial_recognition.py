@@ -14,7 +14,7 @@ from time import time
 from spotify_playback import playbackSong as ps
 from build_database import updateFavoriteTrack as ut
 
-def runFacialRecognition(cid, secret, timeOut = 5, faceLocations = [], faceEncodings = [], mappedNames = [], songIDs = [], processFrame = True):
+def run_facial_recognition(cid, secret, time_out = 5, face_locations = [], face_encodings = [], mapped_names = [], song_IDs = [], process_frame = True):
     '''
     Summary
     -------
@@ -31,23 +31,23 @@ def runFacialRecognition(cid, secret, timeOut = 5, faceLocations = [], faceEncod
     secret : string, required
         Represents the Spotify app's secret id. You will get this by creating an
         authorized Spotify Developer App (DO NOT SHARE WITH OTHERS).
-    timeOut : int, optional
+    time_out : int, optional
         Represents the number of seconds that the camera will remain on when running
         the script. The default value is 5 seconds.
-    faceLocations : list
+    face_locations : list
         Creates a list that will be updated with face location coordinates as the
         program runs. The list defaults to empty.
-    faceEncodings : list
+    face_encodings : list
         Creates a list that will be updated with face encodings for all faces
         found by the camera. The list defaults to empty.
-    mappedNames : list
+    mapped_names : list
         Creates a list that will be updated with the names of any faces that
         the camera recognizes and that match someone in oyur known_people directory.
         The list defaults to empty.
-    songIDs : list
+    song_IDs : list
         Creates a list that will be updated with the track URIs of all the
-        people that are added to the mappedNames list. The list defaults to empty.
-    processFrame : bool
+        people that are added to the mapped_names list. The list defaults to empty.
+    process_frame : bool
         a bool that determines whether or not a frame will be processed in a given
         passthrough of the while loop. This allows the facial recognition API
         to run more efficiently. The default is True.
@@ -59,20 +59,20 @@ def runFacialRecognition(cid, secret, timeOut = 5, faceLocations = [], faceEncod
     '''
     #store json object as dict that maps names to encodings and songs
     with open('encodings.json', 'r') as enc:
-        identityMap = json.loads(enc.read())
+        identity_map = json.loads(enc.read())
         
-    knownFaceNames, knownFaceEncodings, nameMusicMap = [], [], {}
-    for identity in identityMap:
-        knownFaceNames.append(identity)
-        knownFaceEncodings.append(np.array(identityMap[identity][0]))
-        nameMusicMap[identity] = identityMap[identity][1]
+    known_face_names, known_face_encodings, name_music_map = [], [], {}
+    for identity in identity_map:
+        known_face_names.append(identity)
+        known_face_encodings.append(np.array(identity_map[identity][0]))
+        name_music_map[identity] = identity_map[identity][1]
     
     # Get a reference to webcam #0 (the default one)
     video_capture = cv2.VideoCapture(0)
     
-    timeoutStart = time()
+    time_out_start = time()
     
-    while time() < timeoutStart + timeOut:
+    while time() < time_out_start + time_out:
         # Grab a single frame of video
         ret, frame = video_capture.read()
     
@@ -83,29 +83,29 @@ def runFacialRecognition(cid, secret, timeOut = 5, faceLocations = [], faceEncod
         rgb_small_frame = small_frame[:, :, ::-1]
     
         # Only process every other frame of video to save time
-        if processFrame:
+        if process_frame:
             # Find all the faces and face encodings in the current frame of video
-            faceLocations = face_recognition.face_locations(rgb_small_frame)
-            faceEncodings = face_recognition.face_encodings(rgb_small_frame, faceLocations)
+            face_locations = face_recognition.face_locations(rgb_small_frame)
+            face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
     
-            faceNames = []
-            for faceEncoding in faceEncodings:
+            face_names = []
+            for face_encoding in face_encodings:
                 # See if the face is a match for the known face(s)
-                matches = face_recognition.compare_faces(knownFaceEncodings, faceEncoding)
+                matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
     
                 # Use the known face with the smallest distance to the new face
-                faceDistances = face_recognition.face_distance(knownFaceEncodings, faceEncoding)
-                bestMatchIndex = np.argmin(faceDistances)
-                if matches[bestMatchIndex]:
-                    name = knownFaceNames[bestMatchIndex]
-                    faceNames.append(name)
+                face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
+                best_match_index = np.argmin(face_distances)
+                if matches[best_match_index]:
+                    name = known_face_names[best_match_index]
+                    face_names.append(name)
                 
-            for name in faceNames:
-                if name not in mappedNames:
-                    mappedNames.append(name)
-                    songIDs.append(nameMusicMap[name])
+            for name in face_names:
+                if name not in mapped_names:
+                    mapped_names.append(name)
+                    song_IDs.append(name_music_map[name])
     
-        processFrame = not processFrame
+        process_frame = not process_frame
         
         # displays the video taken from webcam. Not actually necessary to run
         # cv2.imshow('Video', frame)
@@ -119,12 +119,12 @@ def runFacialRecognition(cid, secret, timeOut = 5, faceLocations = [], faceEncod
     cv2.destroyAllWindows()
     
     # Run script that plays Spotify based on matched faces
-    if songIDs:
-        ps(songIDs, cid, secret) 
+    if song_IDs:
+        ps(song_IDs, cid, secret) 
 
-def main():
+def main(key_file = 'keys.txt'):
     #acquire Spotify keys from hidden file
-    with open('keys.txt', 'r') as keys:
+    with open(key_file, 'r') as keys:
         cid, secret = keys.read().split('\n')
     
     #ask if user wants to update favorite track information
@@ -132,7 +132,7 @@ def main():
         names = input('Enter names you wish to update favorite track for (separate each by commas): ').split(', ')
         ut(names, cid, secret)
         
-    runFacialRecognition(cid, secret)
+    run_facial_recognition(cid, secret)
     
 
 if __name__ == '__main__':
