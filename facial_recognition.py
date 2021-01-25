@@ -6,13 +6,13 @@ Created on Tue Dec 29 03:26:53 2020
 @author: alec
 """
 
-import json
 import face_recognition
 import cv2
 import numpy as np
 from time import time
-from spotify_playback import playbackSong as ps
-from build_database import updateFavoriteTrack as ut
+from spotify_playback import playback_song as ps
+from build_database import update_favorite_track as ut
+import helper
 
 def run_facial_recognition(cid, secret, time_out = 5, face_locations = [], face_encodings = [], mapped_names = [], song_IDs = [], process_frame = True):
     '''
@@ -58,8 +58,7 @@ def run_facial_recognition(cid, secret, time_out = 5, face_locations = [], face_
 
     '''
     #store json object as dict that maps names to encodings and songs
-    with open('encodings.json', 'r') as enc:
-        identity_map = json.loads(enc.read())
+    identity_map = helper.open_encoding_file_read()
         
     known_face_names, known_face_encodings, name_music_map = [], [], {}
     for identity in identity_map:
@@ -124,12 +123,11 @@ def run_facial_recognition(cid, secret, time_out = 5, face_locations = [], face_
 
 def main(key_file = 'keys.txt'):
     #acquire Spotify keys from hidden file
-    with open(key_file, 'r') as keys:
-        cid, secret = keys.read().split('\n')
+    cid, secret = helper.open_keys_file_read()
     
     #ask if user wants to update favorite track information
     if input('Update favorite track information? [Y/N] ').lower() == 'y':
-        names = input('Enter names you wish to update favorite track for (separate each by commas): ').split(', ')
+        names = input('Enter names for which you wish to update favorite track (separate each by comma and space): ').split(', ')
         ut(names, cid, secret)
         
     run_facial_recognition(cid, secret)
