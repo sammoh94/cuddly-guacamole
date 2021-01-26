@@ -20,18 +20,17 @@ def playback_song(song_ID, spotify_object = sp):
     Parameters
     ----------
     song_ID : list, required
-        list of strings taken in from a dictionary that maps faces to Spotify
+        List of strings taken in from a dictionary that maps faces to Spotify
         track URIs.
     spotify_object : Spotify Object
-        imported constant that allows access to Spotify information and music
-        playback
+        Imported constant that allows access to Spotify information and music
+        playback functionality.
 
     Returns
     -------
     None.
 
     '''
-    
     # uncomment to see all active devices
     # print(sp.devices())
     dev_ID = sp.devices()['devices'][0]['id']
