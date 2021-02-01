@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jan 3 20:41:09 2021
-
-@author: alec
-"""
-
 from consts import spotify_object as sp
 
 
@@ -37,4 +29,8 @@ def playback_song(song_ID, spotify_object = sp):
     
     sp.start_playback(device_id = dev_ID, uris = song_ID)
 
+def main():
+    playback_song(['spotify:track:1tuTH35fXW1zlg4thEAWQh'])
     
+if __name__ == '__main__':
+    main()
