@@ -44,11 +44,11 @@ or\
 # How to Use
 1. Navigate to the local repository:
 
-`cd cuddly_guacamole/`
+    `cd cuddly_guacamole/`
 
 2. Run *make setup* from the terminal to create required files and directories if they do not already exist:
 
-`make setup`
+    `make setup`
 
 3. In your text editor, manually enter your client ID and secret ID into the *keys.txt* file (see *keys.txt.sample* file for proper formatting)
 
@@ -56,23 +56,23 @@ or\
 
 5. Run *make build* from the terminal to build your database that maps names to face encodings and music selections:
 
-`make build`
+    `make build`
 
 **Note** The user will be prompted to input song and artist information for every .jpg file in the *known_people* directory. If the song is not found (spelled incorrectly or not on Spotify), the user will be prompted to try again.
 
 6. Run *make test-playback* from the terminal to ensure that you can connect to the Spotify web API and playback music:
 
-`make test-playback`
+    `make test-playback`
 
 7. Run *make run* from the terminal to run the facial recognition program and playback music from Spotify for all recognized faces.
 
-`make run`
+    `make run`
 
 **Note** The user will be asked if they want to update favorite track information for anyone in the *known_people* directory. If so, type *Y* and input the new information. Else, type *N*.
 
 7. Whenever you add new photos to your *known_people* directory, be sure to update the database by running *make build* in the terminal:
 
-`make build`
+    `make build`
 
 **Note** Type *make* or *make help* in the terminal to see what each rule in the Makefile does:
 
