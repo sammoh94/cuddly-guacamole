@@ -4,7 +4,7 @@ Connects to a camera and runs facial recognition software to play specific songs
 # Getting Started
 ## Pre-Requisites
 1. face-recognition: `1.3.0`
-    - Python 3.3+ or Python 2.7
+    - Python 3.3+ or Python 2.7 (Note: This library works in Python 2.7, but the project runs Python 3+)
     - macOS or Linux (Windows not officially supported, but might work)
     - have [dlib](https://gist.github.com/ageitgey/629d75c1baac34dfa5ca2a1928a7aeaf) installed
 2. spotipy: `2.16.1`
@@ -46,30 +46,37 @@ or\
 
 `cd cuddly_guacamole/`
 
-2. Run *build_database.py* from the terminal:
+2. Run *make setup* from the terminal to create required files and directories if they do not already exist:
 
-`python3 build_database.py`
+`make setup`
 
-or from your favorite IDE to create required files and directories (see docstring for *build_database.py* for more information) and add them to your *.gitignore* file.
+3. In your text editor, manually enter your client ID and secret ID into the *keys.txt* file (see *keys.txt.sample* file for proper formatting)
 
-**Note** - first run creates the *known_people* directory in which you will store your images.
+4. Manually add images of people you want to store in your database to the *known_people* directory that was just created. Files must be named with the form 'firstName lastName.jpg' (e.g. Alec Echevarria.jpg).
 
-3. Manually add images of people you want to store in your database to this directory. Files must be named with the form 'firstName lastName.jpg' (e.g. Alec Echevarria.jpg).
+5. Run *make build* from the terminal to build your database that maps names to face encodings and music selections:
 
-4. Re-run *build_database.py* to build your database, mapping names to faces and music selection:
+`make build`
 
-`python3 build_database.py`
+**Note** The user will be prompted to input song and artist information for every .jpg file in the *known_people* directory. If the song is not found (spelled incorrectly or not on Spotify), the user will be prompted to try again.
 
-5. Input song and artist information. If the song is not found (spelled incorrectly or not on Spotify), the user will be prompted to try again.
+6. Run *make test-playback* from the terminal to ensure that you can connect to the Spotify web API and playback music:
 
-6. Run *facial_recognition.py* from the terminal:
+`make test-playback`
 
-`python3 facial_recognition.py`
+7. Run *make run* from the terminal to run the facial recognition program and playback music from Spotify for all recognized faces.
 
-or from your favorite IDE. This will first ask if you want to update favorite track information for anyone in your *known_people* directory. If yes, type *Y* and input the new information. Else, type *N*. Next, the script turns on your camera and begins playback from your active Spotify device if a face is recognized.
+`make run`
 
-**Note** - you can find your active device by uncommenting the line in *spotify_playback.py* that prints all devices.
+**Note** The user will be asked if they want to update favorite track information for anyone in the *known_people* directory. If so, type *Y* and input the new information. Else, type *N*.
 
+7. Whenever you add new photos to your *known_people* directory, be sure to update the database by running *make build* in the terminal:
+
+`make build`
+
+**Note** Type *make* or *make help* in the terminal to see what each rule in the Makefile does:
+
+`make` or `make help`
 
 # Contributors
 
