@@ -6,9 +6,7 @@ def playback_song(song_ID, spotify_object = sp, device_ID = dev_ID):
     '''
     Summary
     -------
-    Finds the id of the device from which you want to playback music (default
-    is the first device in your active devices) and starts playback of
-    the song(s) in song_ID through Spotify's API.
+    Starts playback of the song(s) in song_ID through Spotify's API.
     
     Parameters
     ----------
@@ -18,6 +16,8 @@ def playback_song(song_ID, spotify_object = sp, device_ID = dev_ID):
     spotify_object : Spotify Object
         Imported constant that allows access to Spotify information and music
         playback functionality.
+    dev_ID : string
+        Imported constant representing your active Spotify device's ID
 
     Returns
     -------
@@ -31,9 +31,8 @@ def playback_other(ID, spotify_object = sp, device_ID = dev_ID):
     '''
     Summary
     -------
-    Finds the id of the device from which you want to playback music (default
-    is the first device in your active devices) and starts playback of
-    a specific artist, album, or playlist through Spotify's API.
+    Starts playback of a specific artist, album, or playlist through Spotify's
+    API.
     
     Parameters
     ----------
@@ -43,6 +42,8 @@ def playback_other(ID, spotify_object = sp, device_ID = dev_ID):
     spotify_object : Spotify Object
         Imported constant that allows access to Spotify information and music
         playback functionality.
+    dev_ID : string
+        Imported constant representing your active Spotify device's ID
 
     Returns
     -------
