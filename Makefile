@@ -2,7 +2,7 @@
 PYTHON = python3
 
 # .PHONY defines parts of the makefile that are not dependant on any specific file
-.PHONY = help setup test-playback build run
+.PHONY = help setup test-playback build run open-spotify
 
 FILES = encodings.json keys.txt
 
@@ -40,3 +40,8 @@ build:
 run:
 	@echo "Running live facial recognition and Spotify playback..."
 	@${PYTHON} facial_recognition.py
+
+open-spotify:
+	@echo "Opening Spotify web player in default browser..."
+	@open https://open.spotify.com/?_ga=2.137983541.461928168.1612716830-1561551782.1610510379
+	@sleep 10
